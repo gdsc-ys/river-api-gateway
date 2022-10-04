@@ -1,5 +1,5 @@
 import express from 'express';
-import morgan from 'morgan';
+import morganMiddleware from './middleware/morgan.middleware.js';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const app = new express();
@@ -7,8 +7,7 @@ const app = new express();
 app.set('port', 4000);
 app.set('trust proxy', true);
 
-let morganOption = 'dev';
-app.use(morgan(morganOption));
+app.use(morganMiddleware);
 
 // proxy setting
 app.use(
