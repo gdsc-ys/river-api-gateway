@@ -19,6 +19,14 @@ app.use(
     })
 );
 
+app.use(
+    '/auth',
+    createProxyMiddleware({
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+    })
+);
+
 // 404 Page_Not_Found
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} No such a router`);
